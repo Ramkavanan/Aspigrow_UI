@@ -1,0 +1,7 @@
+<header  data-ng-include="'header.tpl.html'" data-ng-controller="HeaderCtrl"></header>
+<section data-ng-class="{ footerPrevSection: AuthenticationService.isAuthenticated() }" data-ui-view=""></section>
+<footer class="container-fluid" data-ng-class="{ loggedInFooter: AuthenticationService.isAuthenticated() || isLoginPage() }"
+	data-ng-include="'footer.tpl.html'" data-ng-controller="FooterCtrl"></footer>
+<div class="loadingIndicator" data-ng-show="isLoading()">
+	<span class="fa fa-spin fa-spinner"></span>
+</div>

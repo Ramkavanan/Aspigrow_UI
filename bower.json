@@ -1,0 +1,24 @@
+{
+  "name": "aspigrow",
+  "version": "0.1.0",
+  "description": "Client side script for Aspigrow by Shinnedhawks",
+  "authors": [
+    "Ramachandran"
+  ],
+  "homepage": "http://www.shinnedhawks.com",
+  "devDependencies": {
+    "angular": "^1.4.8",
+    "angular-animate": "^1.4.8",
+    "angular-aria": "^1.4.8",
+    "angular-messages": "^1.4.8",
+    "angular-route": "1.5.0",
+    "angular-mocks": "1.5.0",
+    "angular-ui-router": "~0.2.15",
+    "bootstrap": "~3.3.4",
+    "jquery": "~2.1.4",
+    "angular-bootstrap": "~0.13.0"
+  },
+  "dependencies": {
+    "angular-material": "^1.1"
+  }
+}
