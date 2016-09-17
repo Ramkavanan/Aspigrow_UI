@@ -7,15 +7,17 @@ angular.module('aspigrow.home', [
 		url: '/home',
 		templateUrl: 'home/home.tpl.html',
 		controller: 'HomeController',
-		controllerAs : 'homeCtrl',
 		data: {
 			roles: [ 'Anonymous' ]
 		}
 	});
 })
 
-.controller('HomeController', function ($window, $scope, $state, AuthenticationService, $mdSidenav) {
+.controller('HomeController', function ($window, $scope, $state, AuthenticationService) {
 	$window.console.log('In HomeCtrl');
+	$scope.gotoQuestionaries = function () {
+		$state.go('aspigrow.questionarie');
+	};
 
 })
 

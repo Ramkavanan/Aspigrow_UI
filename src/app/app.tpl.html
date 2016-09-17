@@ -1,5 +1,5 @@
 <header  data-ng-include="'header.tpl.html'" data-ng-controller="HeaderCtrl"></header>
-<section data-ng-class="{ footerPrevSection: AuthenticationService.isAuthenticated() }" data-ui-view=""></section>
+<section data-ng-class="{ footerPrevSection: AuthenticationService.isAuthenticated() }" class="sectionBGColor"   data-ui-view=""></section>
 <footer class="container-fluid" data-ng-class="{ loggedInFooter: AuthenticationService.isAuthenticated() || isLoginPage() }"
 	data-ng-include="'footer.tpl.html'" data-ng-controller="FooterCtrl"></footer>
 <div class="loadingIndicator" data-ng-show="isLoading()">

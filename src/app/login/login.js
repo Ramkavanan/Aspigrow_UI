@@ -22,16 +22,18 @@ angular.module('aspigrow.login', [
 	$scope.credentials = {};
 	
 	$scope.doLogin = function () {
-		AuthenticationService.login($scope.credentials.username, $scope.credentials.password)
+		var data = $scope.credentials;
+		AuthenticationService.login(data)
 			.then(function (isLoggedIn) {
 				$window.console.log('User logged in - ' + isLoggedIn);
 				if (isLoggedIn) {
 					$state.go(AuthenticationService.homePage());
 				}
+				alert("Credential mismatch ... ");
 				$scope.loginFailed = true;
 			}, function () {
 				$scope.loginFailed = true;
-		});
+		}); 
 	};
 	$scope.goSignup = function() {
 		// Place to go for redirect

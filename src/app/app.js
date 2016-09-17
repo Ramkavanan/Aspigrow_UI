@@ -6,13 +6,14 @@ angular.module('aspigrow', [
 	'aspigrow.forgotpassword',
 	'aspigrow.signup',
 	'aspigrow.logout',
+	'aspigrow.questionarie',
 	'security',
 	'service.httprequesttracker',
 	'ui.router'
 ])
 
 .constant('ApiConstants', {
-	BaseUrl: 'http://localhost'
+	BaseUrl: 'http://localhost:8088/'
 })
 
 .config(function myAppConfig ($stateProvider, $urlRouterProvider, $provide) {
