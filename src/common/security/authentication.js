@@ -8,7 +8,7 @@ angular.module('security.authentication', [
 	};
 
 	service.homePage = function () {
-		var state = 'fashnoid.home';
+		var state = 'aspigrow.home';
 		/*angular.forEach(Security.Roles, function (Role) {
 			if (service.currentuser && service.currentuser.roles.indexOf(Role.role) !== -1) {
 				state = Role.homeState;
@@ -17,11 +17,12 @@ angular.module('security.authentication', [
 		return state;
 	};
 
-	service.login = function (username, password) {
+	service.login = function (data) {
+		console.log('daat ---- ',data);
 		var reqeust = $http({
 			method: 'POST',
 			url: ApiConstants.BaseUrl + 'user/login',
-			data: '{ "emailId": "string", "phone": "string", "firstName": "string",  "middleName": "string",  "lastName": "string",  "imageUrl": "string1",  "phoneVerified": false,  "userId": "string"}',
+			data: data,
 			headers: { 'Content-Type': 'application/json',
 				   'Accept':'application/json' }
 			/**method: 'GET',
@@ -32,17 +33,20 @@ angular.module('security.authentication', [
 		});
 
 		return reqeust.then(function (response) {
-			console.log('Reposne Came '+response);
+			console.log('Reposne Came '+response.data);
 			if (response.status === 200) {
-				return service.requestCurrentUser().then(function (response) {
-					return true;
+				/*return service.requestCurrentUser().then(function (response) {
+					service.currentUser = response;
+					return response;
 				}, function (response) {
-					return false;
-				});
+					return null;
+				});*/
+				console.log('Came inside');
+				return response.data;
 			}
-			return false;
+			return null;
 		}, function (response) {
-			return false;
+			return null;
 		});
 	};
 

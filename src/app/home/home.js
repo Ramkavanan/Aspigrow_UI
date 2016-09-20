@@ -13,8 +13,10 @@ angular.module('aspigrow.home', [
 	});
 })
 
-.controller('HomeController', function ($window, $scope, $state, AuthenticationService) {
+.controller('HomeController', function ($window, $scope, $state, AuthenticationService, $rootScope) {
 	$window.console.log('In HomeCtrl');
+console.log('Service user data ',AuthenticationService.currentUser);
+console.log('Data management ', $rootScope.currentUser);
 	$scope.gotoQuestionaries = function () {
 		$state.go('aspigrow.questionarie');
 	};

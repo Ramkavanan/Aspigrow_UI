@@ -9,6 +9,7 @@ angular.module('aspigrow', [
 	'aspigrow.questionarie',
 	'security',
 	'service.httprequesttracker',
+	'service.QuestionaryService',
 	'ui.router'
 ])
 

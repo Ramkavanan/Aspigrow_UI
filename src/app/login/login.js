@@ -15,21 +15,27 @@ angular.module('aspigrow.login', [
 	});
 })
 
-.controller('LoginCtrl', function ($window, $scope, $state, AuthenticationService) {
+.controller('LoginCtrl', function ($window, $scope, $state, AuthenticationService,$rootScope) {
 	$window.console.log('In LoginCtrl');
 	
-	$scope.loginFailed = false;
-	$scope.credentials = {};
 	
+	
+	$scope.init = function() {
+		$scope.credentials = {};
+		$scope.loginFailed = false;
+	};
+
 	$scope.doLogin = function () {
-		var data = $scope.credentials;
-		AuthenticationService.login(data)
-			.then(function (isLoggedIn) {
-				$window.console.log('User logged in - ' + isLoggedIn);
-				if (isLoggedIn) {
+		console.log($scope.credentials);
+		AuthenticationService.login($scope.credentials)
+			.then(function (user) {
+				$rootScope.currentUser = user;
+				$window.console.log('User logged in - ' + user);
+				if (user != null) {
+					console.log(' Serv;;; ', AuthenticationService.homePage());
 					$state.go(AuthenticationService.homePage());
 				}
-				alert("Credential mismatch ... ");
+				//alert("Credential mismatch ... ");
 				$scope.loginFailed = true;
 			}, function () {
 				$scope.loginFailed = true;
