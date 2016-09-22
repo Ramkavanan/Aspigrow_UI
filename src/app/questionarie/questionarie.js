@@ -15,6 +15,7 @@ angular.module('aspigrow.questionarie', [
 
 .controller('QuestionarieController', function ($window, $scope, $state, QuestionaryService, $rootScope) {
 	$window.console.log('In QuestionarieController');
+	
 	console.log('Data management i nquestionaries ', $rootScope.currentUser.contact.ContId);
 	var contactId = $rootScope.currentUser.contact.ContId;
 	if(contactId === undefined || contactId == null || contactId.length <= 0 ) {
@@ -23,9 +24,12 @@ angular.module('aspigrow.questionarie', [
 		QuestionaryService.getQuestionariesByContact($rootScope.currentUser.contact.ContId )
 			.then(function (quesnatriesHeader) {
 					console.log('Questioanries --- ', quesnatriesHeader);
+					$scope.header = quesnatriesHeader;
+					$scope.lineItems = quesnatriesHeader.QuestProcessLineItems;
 				}
 			); 	
 	}
+	console.log('Line Items --- ',$scope.lineItems);
 })
 
 ;
