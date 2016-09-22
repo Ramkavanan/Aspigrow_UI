@@ -15,7 +15,10 @@ angular.module('aspigrow.questionarie', [
 
 .controller('QuestionarieController', function ($window, $scope, $state, QuestionaryService, $rootScope) {
 	$window.console.log('In QuestionarieController');
-	
+	$scope.init = function() {
+		$scope.credentials = {};
+		$scope.lineItems = [];
+	};
 	console.log('Data management i nquestionaries ', $rootScope.currentUser.contact.ContId);
 	var contactId = $rootScope.currentUser.contact.ContId;
 	if(contactId === undefined || contactId == null || contactId.length <= 0 ) {
@@ -24,12 +27,25 @@ angular.module('aspigrow.questionarie', [
 		QuestionaryService.getQuestionariesByContact($rootScope.currentUser.contact.ContId )
 			.then(function (quesnatriesHeader) {
 					console.log('Questioanries --- ', quesnatriesHeader);
-					$scope.header = quesnatriesHeader;
-					$scope.lineItems = quesnatriesHeader.QuestProcessLineItems;
+					
+					console.log('Questioanries line  --- ', quesnatriesHeader[0].questProcessLineItems);
+					
+					$scope.$evalAsync(function(){ 
+
+					   	 $scope.lineItems = quesnatriesHeader[0].QuestProcessLineItems;
+						$scope.header = quesnatriesHeader;
+	console.log('Line Items --- ',$scope.lineItems);
+
+					});
 				}
 			); 	
 	}
 	console.log('Line Items --- ',$scope.lineItems);
+	$scope.splitOptions = function(value){
+		console.log('slpit value --- ',value);
+		console.log('slpit value --- ',value.split(";"));
+		return value.split(";");
+	};
 })
 
 ;
