@@ -34,8 +34,9 @@ angular.module('aspigrow.login', [
 				if (user != null) {
 					console.log(' Serv;;; ', AuthenticationService.homePage());
 					$state.go(AuthenticationService.homePage());
+				} else {
+					alert("Credential mismatch ... ");
 				}
-				//alert("Credential mismatch ... ");
 				$scope.loginFailed = true;
 			}, function () {
 				$scope.loginFailed = true;

@@ -6,14 +6,31 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<!-- font awesome from Bootstrap CDN -->
-		<link href="http://netdna.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.css" rel="stylesheet">
-
-		<!-- compiled CSS --><% styles.forEach( function ( file ) { %>
-		<link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
-
+		<link rel="stylesheet" href="assets/styles/normalize.css" />
+		<link rel="stylesheet" href="assets/styles/reset.css" />
+		<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="assets/bootstrap/css/bootstrap-material-design.min.css" />
+		  
+		<link rel="stylesheet" href="assets/styles/contractzoStyles.css" />
+		  
+		<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900' rel='stylesheet' type='text/css' />
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900' rel='stylesheet' type='text/css' />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+		
+		<script src="assets/bootstrap/js/jquery.min.js"></script>
 		<!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
 		<script type="text/javascript" src="<%= file %>"></script><% }); %>
 	</head>
-	<body ng-controller="AppCtrl" data-ui-view="">
+	<body ng-controller="AppCtrl" data-ui-view="" class="loginbg">
 	</body>
+	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/bootstrap/js/material.min.js"></script>
+
+	 <script src="assets/bootstrap/js/ripples.min.js"></script>
+	 
+	 <script src="assets/bootstrap/js/picker.js"></script>
+	 <script>
+		$.material.init();
+	</script>
+
 </html>

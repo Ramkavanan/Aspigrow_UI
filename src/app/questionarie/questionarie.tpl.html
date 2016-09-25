@@ -1,220 +1,290 @@
-<div class="container-fluid" ng-controller="QuestionarieController">
-   <header>
-      <div class="logo">
-         <img src="assets/images/logo.png" alt="contractzo" />
-      </div>
-   </header>
-   <div id="wrapper">
-      <!-- Sidebar -->
-      <div id="sidebar-wrapper">
-         <ul class="sidebar-nav">
-            <li>
-               <a href="#" ><i class="fa fa-question-circle-o fa-lg" aria-hidden="true"></i><span>Questionaires</span></a>
-            </li>
-            <li>
-               <a href="#"><i class="fa fa-file-text fa-lg" aria-hidden="true"></i><span>Review</span></a>
-            </li>
-            <li>
-               <a href="#"><i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i><span>Reports</span></a>
-            </li>
-            <li>
-               <a href="#"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i><span>Dashboard</span></a>
-            </li>
-            <li>
-               <a href="#"><i class="fa fa-sign-out fa-lg" aria-hidden="true"></i><span>Logout</span></a>
-            </li>
-         </ul>
-      </div>
-      <!-- /#sidebar-wrapper -->
-      <!-- Page Content -->
-      <div id="page-content-wrapper">
-         <div style=""><a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a></div>
-         <div class="container-fluid">
-            <div class="row">
-               <div class="col-lg-12">
-                  <h3>Questionaires</h3>
-                  <div class="questionblock" ng-repeat="lineItem in lineItems track by $index">
-                     <div class="qno">{{$index}}</div>
-                     <div class="row">
-                        <div class="col-md-6">
-                           <h2>{{lineItem.Question }}</h2>
-                           <div class="form-group answeropt"ng-if="lineItem.Type == 'Text'">
-                              <div class="textbox">
-                                 <input type="text" > 
-                              </div>
-                           </div>
-			                  <div class="form-group answeropt"ng-if="lineItem.Type == 'Picklist'">
-                              <form role="form">
-                                 <label for="cType">Single Select</label>
-                                 <select class="form-control select" id="cType" readonly>
-                                    <option></option>
-                                    <option ng-repeat="{{ item in splitOptions(lineItem.PicklistOtions)}}" value="{{item}}">{{item}}</option>
-                                    
-                                 </select>
-                              </form>
-                           </div>
-                        </div>
-                        <div class="col-md-6">
-                           <p>{{lineItem.HelpText}}</p>
-                        </div>
-                        <div class="col-md-12">
-                           <div class="form-group answeropt commentsCont">
-                              <form role="form">
-                                 <textarea class="form-control"  placeholder="Comments" rows="1"></textarea>
-                              </form>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-
-
-                <!--  <div class="questionblock" ng-repeat="lineItem in lineItems">
-                     <div class="qno">1.</div>
-                     <div class="row">
-                        <div class="col-md-6">
-                           <h2>{{lineItem.Question}}</h2>
-                           <div class="form-group answeropt">
-                              <div class="checkbox">
-                                 <label class="inputspace">
-                                 <input type="checkbox"> MSA
-                                 </label>
-                                 <label class="inputspace">
-                                 <input type="checkbox"> SOW
-                                 </label>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="col-md-6">
-                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer suscipit luctus interdum. Mauris tempus ut mi id sollicitudin. Donec sed porttitor dui. Maecenas consectetur augue a leo interdum, sed euismod magna tincidunt.</p>
-                        </div>
-                        <div class="col-md-12">
-                           <div class="form-group answeropt commentsCont">
-                              <form role="form">
-                                 <textarea class="form-control" placeholder="Comments" rows="1"></textarea>
-                              </form>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="questionblock">
-                     <div class="qno">2.</div>
-                     <div class="row">
-                        <div class="col-md-6">
-                           <h2>Types of Contract?</h2>
-                           <form role="form">
-                              <div class="form-group answeropt">
-                                 <label for="cType">Single Select</label>
-                                 <select class="form-control select" id="cType" readonly>
-                                    <option></option>
-                                    <option value="Option1" selected="selected" readonly>Option1</option>
-                                    <option value="Option2" >Option2</option>
-                                 </select>
-                              </div> -->
-                              <!--<div class="form-group answeropt">
-                                 <label for="cType">Multiple Select</label>
-                                 <select class="form-control select multiple" id="cType" readonly>
-                                 	<option></option>
-                                 	<option value="Option1" selected="selected" readonly>Option1</option>
-                                 	<option value="Option2" >Option2</option>
-                                 	<option value="Option3" >Option3</option>
-                                 	<option value="Option4" >Option4</option>
-                                 	<option value="Option5" >Option5</option>
-                                 </select>								
-                                 </div>-->
-                         <!--  </form>
-                        </div>
-                        <div class="col-md-6">
-                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer suscipit luctus interdum. Mauris tempus ut mi id sollicitudin. Donec sed porttitor dui. Maecenas consectetur augue a leo interdum, sed euismod magna tincidunt.</p>
-                        </div>
-                        <div class="col-md-12">
-                           <div class="form-group answeropt commentsCont">
-                              <form role="form">
-                                 <textarea class="form-control" rows="1"></textarea>
-                              </form>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="questionblock">
-                     <div class="qno">3.</div>
-                     <div class="row">
-                        <div class="col-md-6">
-                           <h2>Switch</h2>
-                           <div class="form-group answeropt">
-                              <div class="switch">
-                                 <label>
-                                 Off
-                                 <input type="checkbox">
-                                 <span class="lever"></span>
-                                 On
-                                 </label>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="col-md-6">
-                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer suscipit luctus interdum. Mauris tempus ut mi id sollicitudin. Donec sed porttitor dui. Maecenas consectetur augue a leo interdum, sed euismod magna tincidunt.</p>
-                        </div>
-                        <div class="col-md-12">
-                           <div class="form-group answeropt commentsCont">
-                              <form role="form">
-                                 <label class="inputspace">Comments</label>
-                                 <textarea class="form-control" rows="1"></textarea>
-                              </form>
-                           </div>
-                        </div>
-                     </div>
-                  </div>-->
-
-<!-- Questionaries start here -->
-
-                  <div class="questionblock">
-                     <div class="qno">3.</div>
-                     <div class="row">
-                        <div class="col-md-6">
-                           <h2>Date Picker</h2>
-                           <div class="form-group answeropt">
-                              <label for="birthdate">Birthdate</label>
-                              <input id="birthdate" type="date" class="datepicker">
-                           </div>
-                        </div>
-                        <div class="col-md-6">
-                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer suscipit luctus interdum. Mauris tempus ut mi id sollicitudin. Donec sed porttitor dui. Maecenas consectetur augue a leo interdum, sed euismod magna tincidunt.</p>
-                        </div>
-                        <div class="col-md-12">
-                           <div class="form-group answeropt commentsCont">
-                              <form role="form">
-                                 <label class="inputspace">Comments</label>
-                                 <textarea class="form-control" rows="1"></textarea>
-                              </form>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-
-<!-- Questionaries block end -->
-
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-   <script>
-      $(".select").dropdown({ "autoinit" : ".select" });
-   </script>
-   <script>
-      $("#menu-toggle").click(function(e) {
-          e.preventDefault();
-          $("#wrapper").toggleClass("toggled");
-      });
-   </script>
+<div class="container-fluid" ng-controller="QuestionarieController" >
+<header>
+<div class="logo" >
+	<img src="assets/images/logo.png" style="width:90%;padding-left:10px;padding-top:4px;" alt="contractzo" />
 </div>
-<style>
-   .sectionBGColor {
-   background:#fff;
-   width:100%;
-   height:100%;
-   }
-   body {
-   background:#fff;
-   }
-</style>
+<div class="userdetails">
+	<ul>
+		<li><i class="fa fa-user fa-lg" aria-hidden="true"></i></li>
+		<li><i class="fa fa-bell fa-lg" aria-hidden="true"></i></li>
+		<li><i class="fa fa-cog fa-lg" aria-hidden="true"></i></li>
+		<li><i class="fa fa-sign-out fa-lg" aria-hidden="true"></i></li>
+	</ul>
+</div>
+<div style="float:left;width:auto;display:none"><a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+</a></div>
+</header>
+<div id="wrapper" style=" background: #f7f7f7;">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">		
+            <ul class="sidebar-nav">              
+                <li>
+                    <a href="#" ><i class="fa fa-question-circle-o fa-lg" aria-hidden="true"></i><span>Questionaires</span></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-file-text fa-lg" aria-hidden="true"></i><span>Review</span></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-pie-chart fa-lg" aria-hidden="true"></i><span>Reports</span></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-tachometer fa-lg" aria-hidden="true"></i><span>Dashboard</span></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-sign-out fa-lg" aria-hidden="true"></i><span>Logout</span></a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+			
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                       <h3>Questionnaires</h3>
+					   <!-- Dynamic Questionaries Render here  -->
+					   <div class="questionblock" ng-repeat="lineItem in header.QuestProcessLineItems track by $index">
+							<div class="qno">{{$index + 1 }}.</div>
+							<div class="row">
+								<div class="col-md-6">
+									<h2>{{lineItem.Question }} ?</h2>
+									<div class="form-group answeropt" ng-if="lineItem.Type == 'Text'">
+									  <div class="textbox">
+										<label class="inputspace">
+											<input type="text" ng-model="lineItem.Answer" > 
+										</label>
+									  </div>
+								   </div>			
+									<div class="form-group answeropt" ng-if="lineItem.Type == 'Check'">
+									  <div class="checkbox">
+										<label class="inputspace">
+										  <input type="checkbox"> MSA
+										</label>
+										<label class="inputspace">
+										  <input type="checkbox"> SOW
+										</label>
+									  </div>
+									</div>
+									
+									<div class="form-group answeropt" ng-if="lineItem.Type == 'Picklist'">
+									<form role="form">
+										<label for="cType">Single Select</label>
+										<select class="form-control select" ng-model="lineItem.Answer" id="cType" readonly>
+											<option></option>
+											<option ng-repeat="opt in lineItem.PicklistOtions |  split:';' " value="{{opt}}">{{opt}}</option>
+											
+										 </select>	
+									</form>				
+									</div>
+									<div class="form-group answeropt" ng-if="lineItem.Type == 'Picklist (Multi-Select)'">
+										<label for="cType">Multiple Select</label>
+										<select ng-model="lineItem.Answer" class="form-control select multiple" id="cType" readonly>
+											<option></option>
+											<option ng-repeat="opt in lineItem.PicklistOtions |  split:';' " value="{{opt}}">{{opt}}</option>
+										 </select>								
+									</div>	
+									<div class="form-group answeropt" ng-if="lineItem.Type == 'Date'">
+										<label for="birthdate">Date</label>
+										<input id="birthdate" ng-model="lineItem.Answer" type="date" class="datepicker">
+										
+        																		  
+									</div>
+								</div>
+								<div class="col-md-6">
+									<p>{{lineItem.HelpText}}.</p>
+								</div>
+								<div class="col-md-12">	
+									<div class="form-group answeropt commentsCont">
+										
+										<form role="form">
+											
+										  <textarea ng-model="lineItem.Comments" class="form-control" placeholder="Comments" rows="1"></textarea>
+										</form>
+									</div>
+								</div>					   
+							</div>
+					   </div>
+					   <!-- Question block start Here -->
+					  <!-- <div class="questionblock">
+							<div class="qno">1.</div>
+							<div class="row">
+								<div class="col-md-6">
+									<h2>Types of Contract?</h2>
+									<div class="form-group answeropt">
+									  <div class="checkbox">
+										<label class="inputspace">
+										  <input type="checkbox"> MSA
+										</label>
+										<label class="inputspace">
+										  <input type="checkbox"> SOW
+										</label>
+									  </div>																			  
+									</div>
+								</div>
+								<div class="col-md-6">
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer suscipit luctus interdum. Mauris tempus ut mi id sollicitudin. Donec sed porttitor dui. Maecenas consectetur augue a leo interdum, sed euismod magna tincidunt.</p>
+								</div>
+								<div class="col-md-12">	
+									<div class="form-group answeropt commentsCont">
+										
+										<form role="form">
+											
+										  <textarea class="form-control" placeholder="Comments" rows="1"></textarea>
+										</form>
+									</div>
+								</div>					   
+							</div>
+					   </div>
+					   <div class="questionblock">
+							<div class="qno">2.</div>
+							<div class="row">
+								<div class="col-md-6">
+									<h2>Types of Contract?</h2>
+									<form role="form">
+									<div class="form-group answeropt">
+										<label for="cType">Single Select</label>
+										<select class="form-control select" id="cType" readonly>
+											<option></option>
+											<option value="Option1" selected="selected" readonly>Option1</option>
+											<option value="Option2" >Option2</option>
+										</select>								
+									</div>
+									<div class="form-group answeropt">
+										<label for="cType">Multiple Select</label>
+										<select class="form-control select multiple" id="cType" readonly>
+											<option></option>
+											<option value="Option1" selected="selected" readonly>Option1</option>
+											<option value="Option2" >Option2</option>
+											<option value="Option3" >Option3</option>
+											<option value="Option4" >Option4</option>
+											<option value="Option5" >Option5</option>
+										</select>								
+								</div>
+									</form>
+								</div>
+								<div class="col-md-6">
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer suscipit luctus interdum. Mauris tempus ut mi id sollicitudin. Donec sed porttitor dui. Maecenas consectetur augue a leo interdum, sed euismod magna tincidunt.</p>
+								</div>
+								<div class="col-md-12">	
+									<div class="form-group answeropt commentsCont">										
+										<form role="form">
+											
+										  <textarea class="form-control" rows="1"></textarea>
+										</form>
+									</div>
+								</div>					   
+							</div>
+					   </div>
+					   <div class="questionblock">
+							<div class="qno">3.</div>
+							<div class="row">
+								<div class="col-md-6">
+									<h2>Switch</h2>
+									<div class="form-group answeropt">
+									
+										<div class="switch">
+											<label>
+											  Off
+											  <input type="checkbox">
+											  <span class="lever"></span>
+											  On
+											</label>
+										  </div>
+									
+																												  
+									</div>
+								</div>
+								<div class="col-md-6">
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer suscipit luctus interdum. Mauris tempus ut mi id sollicitudin. Donec sed porttitor dui. Maecenas consectetur augue a leo interdum, sed euismod magna tincidunt.</p>
+								</div>
+								<div class="col-md-12">	
+									<div class="form-group answeropt commentsCont">										
+										<form role="form">
+											<label class="inputspace">Comments</label>
+										  <textarea class="form-control" rows="1"></textarea>
+										</form>
+									</div>
+								</div>					   
+							</div>
+					   </div>
+					   <div class="questionblock">
+							<div class="qno">3.</div>
+							<div class="row">
+								<div class="col-md-6">
+									<h2>Date Picker</h2>
+									<div class="form-group answeropt">
+										<label for="birthdate">Birthdate</label>
+										<input id="birthdate" type="date" class="datepicker">
+										
+        																		  
+									</div>
+								</div>
+								<div class="col-md-6">
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer suscipit luctus interdum. Mauris tempus ut mi id sollicitudin. Donec sed porttitor dui. Maecenas consectetur augue a leo interdum, sed euismod magna tincidunt.</p>
+								</div>
+								<div class="col-md-12">	
+									<div class="form-group answeropt commentsCont">										
+										<form role="form">
+											<label class="inputspace">Comments</label>
+										  <textarea class="form-control" rows="1"></textarea>
+										</form>
+									</div>
+								</div>					   
+							</div>
+					   </div> -->
+					   <!-- Question Block end here -->
+                        <div class="form-group text-center">							
+							<button type="button" ng-click="submitAnswer()" class="waves-effect waves-light btn btnclr">Submit</button>						
+							<button type="button" ng-click="goHome()" class="waves-effect waves-light btn btnclr1">Cancel</button>						
+						</div>
+                    </div>
+					
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+
+ <script>
+ /*$( document ).ready(function() {
+$('.datepicker').pickadate({
+selectMonths: true,//Creates a dropdown to control month
+selectYears: 15,//Creates a dropdown of 15 years to control year
+//The title label to use for the month nav buttons
+labelMonthNext: 'Next Month',
+labelMonthPrev: 'Last Month',
+//The title label to use for the dropdown selectors
+labelMonthSelect: 'Select Month',
+labelYearSelect: 'Select Year',
+//Months and weekdays
+monthsFull: [ 'January', 'February', 'March', 'April', 'March', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ],
+monthsShort: [ 'Jan', 'Feb', 'Mar', 'Apr', 'Mar', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ],
+weekdaysFull: [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' ],
+weekdaysShort: [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ],
+//Materialize modified
+weekdaysLetter: [ 'S', 'M', 'T', 'W', 'T', 'F', 'S' ],
+//Today and clear
+today: 'Today',
+clear: 'Clear',
+close: 'Close',
+//The format to show on the `input` element
+format: 'dd/mm/yyyy'
+});
+});*/
+//Copy settings and initialization tooltipped
+
+  $(".select").dropdown({ "autoinit" : ".select" });
+ </script>
+<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+		
+    });
+    </script>
+
+</div>
